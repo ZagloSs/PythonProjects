@@ -3,7 +3,9 @@ import os
 
 dirPath = "dirTest"
 
-#----1ª forma de hacerl----
+#----1ª forma de hacerlo----
+#con el metodo isdir / isfile
+
 directoriesForma1 =[]
 filesForma1 = []
 elements = os.listdir(dirPath)
@@ -20,6 +22,7 @@ print("\n------------------------------------\n")
 
 
 #----2ª forma de hacerlo----
+#con el metodo walk
 
 directoriesForma2 = []
 filesForma2 = []

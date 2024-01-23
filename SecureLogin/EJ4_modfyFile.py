@@ -6,6 +6,7 @@ print(f"Quieres sobreescribir o añadir contenido a {archivo}")
 
 elect = int(input("1. Sobreescribir, 2. Añadir: "))
 
+#Exsiste el "w" que sobreescribe el archivo y existe "a" que añade al archivo
 if elect == 1:
     sobreescribir = open(os.path.join(dirPath, archivo), "w")
     sobreescribir.write(input(": "))

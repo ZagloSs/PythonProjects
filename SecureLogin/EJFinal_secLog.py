@@ -1,7 +1,14 @@
+import hashlib
 import json
 
 def getIndex(user_name):
     return usernames.index(user_name)
+
+
+def hashing(str):
+    encrypted = hashlib.sha256(str.encode()).hexdigest()
+    return encrypted
+
 
 def registro():
     nUser = input("Que nombre de usuario quieres?: ")
@@ -12,9 +19,11 @@ def registro():
 
         if nPass == nPassVer:
             okPass = True
-            introducirDatos(nUser, nPass)
+            introducirDatos(nUser, hashing(nPass))
+            print("usuario registrado")
         else:
             print("Las contraseñas no coinciden")
+
 
 def introducirDatos(name, passw):
     newUser = {
@@ -39,14 +48,14 @@ print("------------SecLogCorp----------\n")
 user_name = input("Introduzca su nombre de usuario: ")
 if  usernames.__contains__(user_name):
     passw = input("Introduzca su contraseña: ")
-    if str(usersData["users"][getIndex(user_name)]["password"]) == passw:
+    if str(usersData["users"][getIndex(user_name)]["password"]) == hashing(passw):
         print("Has entrado")
 
 else:
     elect = input("ese nombre de usuario no esta registrado, quieres registrate?: ")
     if elect.lower() == "si":
         registro()
-        print(usersData["users"])
+
 
 users.close()
 
