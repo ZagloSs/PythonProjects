@@ -10,8 +10,7 @@ def hashing(str):
     return encrypted
 
 
-def registro():
-    nUser = input("Que nombre de usuario quieres?: ")
+def registro(nUser):
     okPass = False
     while not okPass:
         nPass = input("Introduce la contraseña: ")
@@ -37,18 +36,15 @@ def introducirDatos(name, passw):
 writeable = open("users.json", "r+")
 users = open("users.json")
 usersData = json.load(users)
+usernames = []
+for i in usersData['users']:
+    usernames.append(i["username"])
 
 
-def checkForUsername(who):
-    checked = False
-    for i in usersData["users"]:
-        if i["username"] == who:
-            checked = True
-    return checked
 
 print("------------SecLogCorp----------\n")
 user_name = input("Introduzca su nombre de usuario: ")
-if checkForUsername(user_name):
+if usernames.__contains__(user_name):
     passw = input("Introduzca su contraseña: ")
     if str(usersData["users"][getIndex(user_name)]["password"]) == hashing(passw):
         print("Contraseña correcta")
@@ -59,7 +55,7 @@ if checkForUsername(user_name):
 else:
     elect = input("ese nombre de usuario no esta registrado, quieres registrate?: ")
     if elect.lower() == "si":
-        registro()
+        registro(user_name)
 
 users.close()
 
